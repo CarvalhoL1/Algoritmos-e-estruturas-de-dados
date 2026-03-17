@@ -1,0 +1,14 @@
+//Esse é um pseudocodigo, assume-se que o vetor começa em 1
+// v = vetor, n = tamanho do vetor
+
+procedimento insertion_sort(v, n){
+    para i = 2 até n {
+        chave = v[i];
+        j = i - 1;
+        enquanto j > 0 e v[j] > chave {
+            v[j+1] = v[i];
+            j = j - 1;
+        }
+        v[j+1] = chave
+    }
+}
