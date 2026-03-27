@@ -1,0 +1,69 @@
+registro noSeq{
+    //Nó sequencial
+    inteiro chave;
+}
+registro listaSeq{
+    inteiro tamanho;
+    inteiro ultimo;
+    noSeq[] dados;
+}
+
+procedimento buscarIndice (x, lista){
+    indice = 0;
+    n = lista.ultimo;
+    L = lista.dados;
+    i = 1;
+    enquanto i <= n{
+        se L[i].chave == x{
+            indice = i;
+            i = n + 1;
+        }
+        senão{
+            i = i + 1;
+        }
+    }
+    retorne indice;
+}
+
+procedimento buscar(x, lista){
+    indice = buscarIndice(x, lista);
+    se indice > 0{
+        retorne lista.dados[indice];
+    }
+    senão{
+        retorne nulo;
+    }
+}
+
+procedimento inserir (X, lista){
+    L = lista.dados;
+    n = lista.ultimo;
+    se n < lista.tamanho{
+        se n == 0{
+            L[1].chave = X;
+            lista.ultimo = 1;
+        }
+        senão se X < L[1].chave{
+            para i = n até 1 passo -1 {
+                L[i + 1] = L[i];
+            }
+            L[1].chave = X;
+            lista.ultimo = n + 1;
+        }
+        senão{
+            para i = n até 1 passo -1 {
+                se X < L[i].chave{
+                    L[i + 1] = L[i];
+                }
+                senão {
+                    L[i + 1].chave = X;
+                    lista.ultimo = n + 1;
+                    i = 0; //força saida
+                }
+            }
+        }
+    }
+    senão {
+        imprimir("Lista cheia!");
+    }
+}
