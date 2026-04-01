@@ -17,9 +17,7 @@ void insertion_sort(int V[], int n){
 void insertion_sort_explicado(int V[], int n){
     for (int i = 1; i < n; i++){
         int chave = V[i];
-        int original = V[i];
         int j = i - 1;
-        printf("Comparando %i na posicao %i com %i na posicao %i\n", V[i], i+1, V[j], j+1);
         while (j >= 0 && V[j] > chave){
             printf("Movendo %i para a direita\n", V[j]);
             V[j+1] = V[j];
@@ -36,7 +34,7 @@ void insertion_sort_explicado(int V[], int n){
 }
 
 int main(){
-    int V[] = {36, 60, 10, 78, 33, 7, 35, 98, 48};
+    int V[] = {23, 64, 79, 78, 33, 7, 35, 98, 48};
     int n = sizeof(V)/sizeof(V[0]);
     for (int i = 0; i < n; i++){
         printf("%i  ", V[i]);
