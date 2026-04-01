@@ -67,3 +67,21 @@ procedimento inserir (X, lista){
         imprimir("Lista cheia!");
     }
 }
+
+procedimento remover (X, lista) {
+    se lista.tamanho == 0 {
+        retorne("Underflow");
+    }
+    indice = buscarIndice(X, lista);
+    removido = nulo;
+    se indice > 0 {
+        removido = lista.dados[indice];
+        para i = indice até lista.tamanho-1{
+            lista.dados[i] = lista.dados[i+1];
+        }
+        lista.tamanho = lista.tamanho - 1;
+    }
+    senão{
+        imprimir("Indice não encontrado");
+    }
+}
