@@ -1,0 +1,40 @@
+registro NoFilaSeq{
+    inteiro chave;
+}
+registro FilaSeq{
+    inteiro maximo;
+    inteiro inicio;
+    inteiro fim;
+    NoFilaSeq[] dados;
+}
+procedimento inserir(X, fila){
+    se (fila.inicio == 1 e fila.fim == fila.maximo) ou (fila.inicio == fila.fim + 1){
+        imprimir("Overflow");
+    }
+    senão{
+        fila.dados[fila.fim] = X;
+        se fila.fim == fila.maximo{
+            fila.fim = 1; 
+        }
+        senão {
+            fila.fim = fila.fim + 1;
+        }
+    }
+}
+
+procedimento remover(fila){
+    removido = NULL;
+    se fila.inicio == fila.fim{
+        imprimir("Underflow");
+    }
+    senão{
+        removido = fila.dados[fila.inicio];
+        se fila.inicio == fila.maximo{
+            fila.inicio = 1;
+        }
+        senão{
+            fila.inicio = fila.inicio + 1; 
+        }
+    }
+    retorne removido;
+}
