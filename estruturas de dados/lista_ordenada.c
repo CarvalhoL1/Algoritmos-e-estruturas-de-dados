@@ -1,12 +1,12 @@
 #include <stdio.h>
-
+#define MAX 20
 typedef struct noSeq{
     int chave;
 }noSeq;
 typedef struct lista_ordenada{
     int tamanho;
     int ultimo;
-    noSeq dados[];
+    noSeq dados[MAX];
 }lista_ordenada;
 
 int buscarIndice(int x, lista_ordenada lista){
@@ -43,7 +43,7 @@ void inserir(int x, lista_ordenada *lista){
         }
         else{
             int i = lista->ultimo;
-            while (i > 0 && x < lista->dados[i].chave) {
+            while (i >= 0 && x < lista->dados[i].chave) {
                 lista->dados[i + 1] = lista->dados[i];
                 i--;
             }
@@ -62,9 +62,7 @@ void remover(int x, lista_ordenada *lista){
         return;
     }
     int indice = buscarIndice(x, *lista);
-    noSeq removido;
     if(indice > 0){
-        removido = lista->dados[indice];
         for(int i = indice; i < lista->ultimo; i++){
             lista->dados[i] = lista->dados[i+1];
         }
@@ -75,7 +73,36 @@ void remover(int x, lista_ordenada *lista){
         return;
     }
 }
+void imprimir(lista_ordenada lista){
+    printf("Lista: ");
+    for(int i = 0; i <= lista.ultimo; i++){
+        printf("[%i]", lista.dados[i].chave);
+    }
+    printf("\n");
+}
 
 int main(){
-    return 0;
+    lista_ordenada lista;
+    lista.ultimo = -1;
+    lista.tamanho = MAX;
+    inserir(10, &lista);
+    imprimir(lista);
+
+    inserir(4, &lista);
+    imprimir(lista);
+
+    inserir(20, &lista);
+    imprimir(lista);
+  
+    remover(10, &lista);
+    imprimir(lista);
+
+    inserir(2, &lista);
+    inserir(200, &lista);
+    imprimir(lista);
+
+    remover(4, &lista);
+    imprimir(lista);
+
+      return 0;
 }
