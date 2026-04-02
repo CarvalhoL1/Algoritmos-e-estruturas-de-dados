@@ -43,25 +43,15 @@ procedimento inserir (X, lista){
             L[1].chave = X;
             lista.ultimo = 1;
         }
-        senão se X < L[1].chave{
-            para i = n até 1 passo -1 {
-                L[i + 1] = L[i];
-            }
-            L[1].chave = X;
-            lista.ultimo = n + 1;
-        }
         senão{
-            para i = n até 1 passo -1 {
-                se X < L[i].chave{
-                    L[i + 1] = L[i];
-                }
-                senão {
-                    L[i + 1].chave = X;
-                    lista.ultimo = n + 1;
-                    i = 0; //força saida
-                }
+            i = n;
+            enquanto i >= 1 e X < L[i].chave{
+                L[i + 1] = L[i];
+                i = i - 1;
             }
-        }
+            L[i + 1].chave = X;
+            lista.ultimo = n + 1;
+            }
     }
     senão {
         imprimir("Lista cheia!");

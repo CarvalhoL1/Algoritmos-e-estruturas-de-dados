@@ -28,14 +28,34 @@ int buscarIndice(int x, lista_ordenada lista){
 //Por ser C, tive que adaptar para retornar o ponteiro
 noSeq* busca(int x, lista_ordenada lista){
     int indice = buscarIndice(x, lista);
-    if(indice > 0){
+    if(indice >= 0){
         return &lista.dados[indice];
     }
     else{
         return NULL;
     }
 }
-
+void inserir(int x, lista_ordenada lista){
+    if(lista.ultimo < lista.tamanho){
+        if(lista.ultimo < 0){
+            lista.dados[0].chave = x;
+            lista.ultimo++;
+        }
+        else{
+            int i = lista.ultimo;
+            while (i > 0 || x < lista.dados[i].chave) {
+                lista.dados[i + 1] = lista.dados[i];
+                i--;
+            }
+            lista.dados[i+1].chave = x;
+            lista.ultimo++;
+        }
+        
+    }
+    else{
+        printf("Lista cheia!");
+    }
+}
 
 
 int main(){
