@@ -17,19 +17,20 @@ int buscarIndice(int x, lista_ordenada lista){
         if(lista.dados[i].chave == x){
             indice = i;
             i = n + 1; //força saida do laço
+            return indice;
         }
         else{
             i = i + 1;
         }
     }
-    return indice;
+    return -1;
 }
 
 //Por ser C, tive que adaptar para retornar o ponteiro
-noSeq* busca(int x, lista_ordenada lista){
-    int indice = buscarIndice(x, lista);
+noSeq* busca(int x, lista_ordenada *lista){
+    int indice = buscarIndice(x, *lista);
     if(indice >= 0){
-        return &lista.dados[indice];
+        return &lista->dados[indice];
     }
     else{
         return NULL;
@@ -62,7 +63,7 @@ void remover(int x, lista_ordenada *lista){
         return;
     }
     int indice = buscarIndice(x, *lista);
-    if(indice > 0){
+    if(indice >= 0){
         for(int i = indice; i < lista->ultimo; i++){
             lista->dados[i] = lista->dados[i+1];
         }
@@ -99,10 +100,18 @@ int main(){
 
     inserir(2, &lista);
     inserir(200, &lista);
+    inserir(50, &lista);
     imprimir(lista);
 
     remover(4, &lista);
     imprimir(lista);
-
-      return 0;
+    noSeq* teste = busca(50, &lista);
+    noSeq* indiceTeste = buscarIndice(50, lista);
+    if(teste != NULL){
+        printf("%d esta no indice %i (contando a partir do 0)\n", teste->chave, indiceTeste);
+    }
+    else{
+        printf("Elemento nao encontrado\n");
+    }
+    return 0;
 }
