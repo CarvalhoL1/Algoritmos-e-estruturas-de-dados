@@ -35,20 +35,20 @@ noSeq* busca(int x, lista_ordenada lista){
         return NULL;
     }
 }
-void inserir(int x, lista_ordenada lista){
-    if(lista.ultimo < lista.tamanho){
-        if(lista.ultimo < 0){
-            lista.dados[0].chave = x;
-            lista.ultimo++;
+void inserir(int x, lista_ordenada *lista){
+    if(lista->ultimo < lista->tamanho - 1){
+        if(lista->ultimo < 0){
+            lista->dados[0].chave = x;
+            lista->ultimo++;
         }
         else{
-            int i = lista.ultimo;
-            while (i > 0 || x < lista.dados[i].chave) {
-                lista.dados[i + 1] = lista.dados[i];
+            int i = lista->ultimo;
+            while (i > 0 && x < lista->dados[i].chave) {
+                lista->dados[i + 1] = lista->dados[i];
                 i--;
             }
-            lista.dados[i+1].chave = x;
-            lista.ultimo++;
+            lista->dados[i+1].chave = x;
+            lista->ultimo++;
         }
         
     }
@@ -56,7 +56,25 @@ void inserir(int x, lista_ordenada lista){
         printf("Lista cheia!");
     }
 }
-
+void remover(int x, lista_ordenada *lista){
+    if(lista->ultimo == -1){
+        printf("Underflow");
+        return;
+    }
+    int indice = buscarIndice(x, *lista);
+    noSeq removido;
+    if(indice > 0){
+        removido = lista->dados[indice];
+        for(int i = indice; i < lista->ultimo; i++){
+            lista->dados[i] = lista->dados[i+1];
+        }
+        lista->ultimo--;
+    }
+    else{
+        printf("Indice não encontrado");
+        return;
+    }
+}
 
 int main(){
     return 0;
