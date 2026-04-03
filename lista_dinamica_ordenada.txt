@@ -1,0 +1,71 @@
+registro noSeq{
+    inteiro chave;
+}
+registro listaSeq{
+    inteiro tamanho;
+    inteiro capacidade = 2; //default
+    Array<noSeq> dados;
+}
+procedimento incerção(x, lista){
+    se lista.tamanho < lista.capacidade{
+        se lista.tamanho == 0{
+            lista.dados[1].chave = x;
+            lista.tamanho = 1;
+        }
+        senão{
+            i = lista.tamanho;
+            enquanto i >= 1 e x < lista.dados[i].chave{
+                lista.dados[i+1].chave = lista.dados[i].chave;
+                i = i - 1;
+            }
+            lista.dados[i + 1].chave = x;
+            lista.tamanho = lista.tamanho + 1;
+        }
+        retorne lista;
+    }
+    senão{
+        novaLista.capacidade = lista.capacidade * 2;
+        novaLista.dados = Array[novaLista.capacidade];
+        para j = 1 até lista.tamanho{
+            novaLista.dados[j].chave = lista.dados[j].chave;
+        }
+        i = lista.tamanho;
+        enquanto i >= 1 e x < novaLista.dados[i].chave{
+            novaLista.dados[i+1].chave = novaLista.dados[i].chave;
+            i = i - 1;
+        }
+        novaLista.dados[i + 1].chave = x;
+        novaLista.tamanho = lista.tamanho + 1;
+        retorne novaLista;
+    }
+}
+
+procedimento remoção(indice, lista){
+    se lista.tamanho == 0{
+        imprimir("Underflow");
+        retorne
+    }
+    se indice > 0 e indice <= lista.tamanho{
+        para i = indice até lista.tamanho - 1{
+            lista.dados[i].chave = lista.dados[i+1].chave;
+        }
+
+        se lista.tamanho - 1 == lista.capacidade/2 e lista.capacidade/2 >= 2{
+            novaLista.capacidade = lista.capacidade/2;
+            novaLista.dados = Array[novaLista.capacidade];
+            para i = 1 até lista.tamanho - 1{
+                novaLista.dados[i].chave = lista.dados[i].chave;
+            }
+            novaLista.tamanho = lista.tamanho - 1;
+            retorne novaLista;
+        }
+        senão{
+            lista.tamanho = lista.tamanho - 1;
+            retorne lista;
+        }
+    }
+    senão{
+        imprimir("Indice invalido!");
+        retorne;
+    }
+}

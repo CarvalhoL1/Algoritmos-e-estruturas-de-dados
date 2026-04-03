@@ -70,7 +70,7 @@ void remover(int x){
     int indice = buscarIndice(x);
     if(indice >= 0){
         for(int i = indice; i < ultimo; i++){
-            dados[i] = dados[i+1];
+            dados[i].chave = dados[i+1].chave;
         }
         ultimo--;
     }
