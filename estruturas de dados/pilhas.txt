@@ -10,7 +10,7 @@ registro PilhaSeq{
 //push acrescenta um elemento no topo da pilha, pop remove
 procedimento push (X, pilha){
     se pilha.topo < pilha.maximo{
-        pilha.dados[topo+1] = X;
+        pilha.dados[pilha.topo+1] = X;
         pilha.topo = pilha.topo + 1;
     }
     senão{
