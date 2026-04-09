@@ -6,7 +6,7 @@ procedimento insertion_sort(v, n){
         chave = v[i];
         j = i - 1;
         enquanto j > 0 e v[j] > chave {
-            v[j+1] = v[i];
+            v[j+1] = v[j];
             j = j - 1;
         }
         v[j+1] = chave

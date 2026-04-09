@@ -17,9 +17,10 @@ procedimento push (X, pilha){
         imprimir("Overflow");
     }
 }
+
 procedimento pop (pilha){
     inteiro removido = NULL;
-    se pilha.topo != 0 {
+    se pilha.topo > 0 {
         removido = pilha.dados[topo];
         pilha.topo = pilha.topo - 1;
     }
@@ -28,3 +29,4 @@ procedimento pop (pilha){
     }
     retorne removido;
 }
+

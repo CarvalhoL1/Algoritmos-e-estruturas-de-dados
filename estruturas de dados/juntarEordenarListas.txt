@@ -1,0 +1,58 @@
+//Questão: Elabora, em Pseudolinguagem, as Estruturas de Dados e procedimentos
+necessários para a solução do seguinte problema: Deseja-se um procedimento que
+receba como entrada duas Listas Lineares Sequenciais Não Ordenadas L1 e L2,
+com capacidade máxima para M1 e M2 elementos, respectivamente, e que retorne
+como saída os dados dessas listas contidos em uma Lista Linear Sequencial
+Ordenada em ordem decrescente, com capacidade máxima (M1 + M2).
+
+
+
+
+registro noSeq{
+    //Nó sequencial
+    inteiro chave;
+}
+registro listaSeq{
+    inteiro tamanho;
+    inteiro max;
+    noSeq[] dados;
+}
+procedimento ordenar(lista){
+    para i = 2 até lista.tamanho{
+        temp = lista.dados[i].chave;
+        j = i - 1;
+        enquanto j > 0 e temp > lista.dados[j].chave{
+            lista.dados[j+1].chave = lista.dados[j].chave;
+            j--;
+        }
+        lista.dados[j+1].chave = temp;
+    }
+}
+procedimento juntarEordenar(l1, l2){
+    ordenar(l1);
+    ordenar(l2);
+    int i = 1, j = 1;
+    l3.max = l1.max + l2.max;
+    l3.tamanho = l1.tamanho + l2.tamanho;
+    para k = 1 até l3.tamanho{
+        se i <= l1.tamanho e j <= l2.tamanho{
+            se l1.dados[i].chave > l2.dados[j].chave{
+                l3.dados[k].chave = l1.dados[i].chave;
+                i++;
+            }
+            senão{
+                l3.dados[k].chave = l2.dados[j].chave;
+                j++;
+            }
+        }
+        senão se j > l2.tamanho{
+            l3.dados[k].chave = l1.dados[i].chave;
+            i++;
+        }
+        senão se i > l1.tamanho{
+            l3.dados[k].chave = l2.dados[j].chave;
+            j++;
+        }
+    }
+    retorne l3;
+}

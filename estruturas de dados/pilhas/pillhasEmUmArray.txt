@@ -7,7 +7,7 @@ registro PilhasSeq{
     inteiro topo1;
     inteiro topo2;
     Array<NoSeq> dados;
-}
+}    
 procedimento pushEsquerda(x, p){
     se p.topo1 == p.topo2 - 1{
         imprimir("Overflow");
@@ -26,6 +26,7 @@ procedimento pushDireita(x, p){
         p.topo2 = p.topo2 - 1;
     }
 }
+
 procedimento popEsquerda(p){
     se p.topo1 > 0 {
         p.topo1 = p.topo1 - 1;

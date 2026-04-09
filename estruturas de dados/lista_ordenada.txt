@@ -44,13 +44,13 @@ procedimento inserir (X, lista){
             lista.ultimo = 1;
         }
         senão{
-            i = n;
-            enquanto i >= 1 e X < L[i].chave{
+            i = n;           
+            enquanto i >= 1 e X < lista.dados[i].chave{
                 L[i + 1] = L[i];
                 i = i - 1;
             }
             L[i + 1].chave = X;
-            lista.ultimo = n + 1;
+            lista.ultimo = lista.ultimo + 1;
             }
     }
     senão {
@@ -58,7 +58,7 @@ procedimento inserir (X, lista){
     }
 }
 
-procedimento remover (X, lista) {
+procedimento remover(X, lista) {
     se lista.ultimo == 0 {
         imprimir("Underflow");
     }
@@ -74,4 +74,5 @@ procedimento remover (X, lista) {
     senão{
         imprimir("Indice não encontrado");
     }
+    retorne removido;
 }
