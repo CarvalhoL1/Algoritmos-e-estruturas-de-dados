@@ -56,3 +56,16 @@ procedimento juntarEordenar(l1, l2){
     }
     retorne l3;
 }
+
+procedimento juntarEordenarV2(l1, l2){ //mais simples
+    l3.tam = l1.tam + l2.tam;
+    l3.max = l1.max + l2.max;
+    para i = 1 até l1.tam{
+        l3.dados[i] = l1.dados[i];
+    }
+    para j = l1.tam + 1 até l3.tam{
+        l3.dados[j] = l2.dados[j - l1.tam];
+    }
+    ordenar(l3);
+    retorne l3;
+}
