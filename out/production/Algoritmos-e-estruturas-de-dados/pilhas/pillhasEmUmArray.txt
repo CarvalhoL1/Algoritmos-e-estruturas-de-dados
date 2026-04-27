@@ -1,0 +1,45 @@
+//A ideia é duas pilhas dividindo um unico vetor, cada uma começando em uma extremidade
+registro NoSeq{
+    inteiro chave;
+}
+registro PilhasSeq{
+    inteiro maximo;
+    inteiro topo1;
+    inteiro topo2;
+    Array<NoSeq> dados;
+}    
+procedimento pushEsquerda(x, p){
+    se p.topo1 == p.topo2 - 1{
+        imprimir("Overflow");
+    }
+    senão{
+        p.dados[p.topo1 + 1].chave = x;
+        p.topo1 = p.topo1 + 1;
+    }
+}
+procedimento pushDireita(x, p){
+    se p.topo1 == p.topo2 - 1{
+        imprimir("Overflow");
+    }
+    senão{
+        p.dados[p.topo2 - 1].chave = x;
+        p.topo2 = p.topo2 - 1;
+    }
+}
+
+procedimento popEsquerda(p){
+    se p.topo1 > 0 {
+        p.topo1 = p.topo1 - 1;
+    }
+    senão{
+        imprimir("Underflow");
+    }
+}
+procedimento popDireita(p){
+    se p.topo2 < p.maximo {
+        p.topo2 = p.topo2 + 1;
+    }
+    senão{
+        imprimir("Underflow");
+    }
+}

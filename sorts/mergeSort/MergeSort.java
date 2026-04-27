@@ -1,3 +1,4 @@
+package mergeSort;
 public class MergeSort {
     static int chamada = 0;
     //p -> posição mais a esquerda, r direita

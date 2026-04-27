@@ -1,0 +1,78 @@
+registro noSeq{
+    //Nó sequencial
+    inteiro chave;
+}
+registro listaSeq{
+    inteiro tamanho;
+    inteiro ultimo;
+    noSeq[] dados;
+}
+
+procedimento buscarIndice (x, lista){
+    indice = 0;
+    n = lista.ultimo;
+    L = lista.dados;
+    i = 1;
+    enquanto i <= n{
+        se L[i].chave == x{
+            indice = i;
+            i = n + 1;
+        }
+        senão{
+            i = i + 1;
+        }
+    }
+    retorne indice;
+}
+
+procedimento buscar(x, lista){
+    indice = buscarIndice(x, lista);
+    se indice > 0{
+        retorne lista.dados[indice];
+    }
+    senão{
+        retorne nulo;
+    }
+}
+
+procedimento inserir (X, lista){
+    L = lista.dados;
+    n = lista.ultimo;
+    se n < lista.tamanho{
+        se n == 0{
+            L[1].chave = X;
+            lista.ultimo = 1;
+        }
+        senão{
+            i = n;           
+            enquanto i >= 1 e X < lista.dados[i].chave{
+                L[i + 1] = L[i];
+                i = i - 1;
+            }
+            L[i + 1].chave = X;
+            lista.ultimo = lista.ultimo + 1;
+            }
+    }
+    senão {
+        imprimir("Lista cheia!");
+    }
+}
+
+procedimento remover(X, lista) {
+    se lista.ultimo == 0 {
+        imprimir("Underflow");
+    }
+    indice = buscarIndice(X, lista);
+    removido = nulo;
+    se indice > 0 {
+        removido = lista.dados[indice];
+        para i = indice até lista.ultimo-1{
+            lista.dados[i] = lista.dados[i+1];
+        }
+        lista.ultimo = lista.ultimo - 1;
+    }
+    senão{
+        imprimir("Indice não encontrado");
+    }
+    retorne removido;
+}
