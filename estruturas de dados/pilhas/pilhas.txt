@@ -1,0 +1,32 @@
+registro NoPilhaSeq{
+    inteiro chave;
+}
+registro PilhaSeq{
+    inteiro maximo;
+    inteiro topo;
+    NoPilhaSeq[] dados;
+}
+//X -> Nó a ser inserido
+//push acrescenta um elemento no topo da pilha, pop remove
+procedimento push (X, pilha){
+    se pilha.topo < pilha.maximo{
+        pilha.dados[pilha.topo+1] = X;
+        pilha.topo = pilha.topo + 1;
+    }
+    senão{
+        imprimir("Overflow");
+    }
+}
+
+procedimento pop (pilha){
+    inteiro removido = NULL;
+    se pilha.topo > 0 {
+        removido = pilha.dados[topo];
+        pilha.topo = pilha.topo - 1;
+    }
+    senão{
+        imprimir("Underflow");
+    }
+    retorne removido;
+}
+
