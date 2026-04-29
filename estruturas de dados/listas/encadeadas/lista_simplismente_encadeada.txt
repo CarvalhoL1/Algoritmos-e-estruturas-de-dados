@@ -1,0 +1,62 @@
+registro NoListaSimplesEnc{
+    inteiro chave;
+    NoListaSimplesEnc proximo;
+}
+registro ListaSimplesEnc{
+    NoListaSimplesEnc cabeca;
+}
+procedimento imprimirListaEnc(L){
+    pt = L.cabeca;
+    enquanto pt != NIL{
+        imprimir(pt.chave);
+        pt = pt.proximo;
+    }
+}
+procedimento busca(x, ant, L){
+    pt  = L.cabeca
+    ant = NIL;
+    se pt != NIL{
+        enquanto (pt != NIL) e (pt.chave != x){
+            ant = pt;
+            pt = pt.proximo;
+        }
+    }
+    senão{
+        imprimir("Lista vazia");
+    }
+    retorne pt;
+}
+
+procedimento inserir(x, L){
+    ant = NIL;
+    pt = busca(X.chave, ant, L);
+    se pt == NIL{
+        se ant == NIL{
+            L.cabeca = x;
+        }
+        senão{
+            ant.proximo = x;
+        }
+    }
+    senão{
+        imprimir("Nó " + x.chave + " já existe");
+    }
+}
+
+procedimento remover(x, L){
+    ant = NIL;
+    pt = busca(x, ant, L);
+    se pt != NIL{
+        se ant == NIL{
+            L.cabeca = pt.proximo;
+        }
+        senão{
+            ant.proximo = pt.proximo;
+        }
+        pt.proximo = NIL;
+    }
+    senão{
+        imprimir("Nó não encontrado");
+    }
+    retorne pt;
+}
