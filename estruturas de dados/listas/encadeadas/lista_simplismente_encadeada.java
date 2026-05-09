@@ -1,10 +1,16 @@
 package encadeadas;
+
+import java.util.Scanner;
+
 class NoListaSimplesEnc{
     int chave;
     NoListaSimplesEnc proximo;
 }
 class ListaSimplesEnc{
     NoListaSimplesEnc cabeca;
+    ListaSimplesEnc(){
+        cabeca = null;
+    }
 }
 class ResultBusca{
     NoListaSimplesEnc ant; //anterior
@@ -71,16 +77,44 @@ public class lista_simplismente_encadeada {
     }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+        int novaChave;
+        ResultBusca res;
+
         ListaSimplesEnc lista = new ListaSimplesEnc();
-        NoListaSimplesEnc teste = new NoListaSimplesEnc();
-        teste.chave = 4;
-        NoListaSimplesEnc teste2 = new NoListaSimplesEnc();
-        teste2.chave = 6;
-        inserir(teste, lista);
-        imprimir(lista);
-        inserir(teste2, lista);
-        imprimir(lista);
-        remover(4, lista);
-        imprimir(lista);
+        do{
+            System.out.println("Digite 1 para inserir");
+            System.out.println("Digite 2 para remover");
+            System.out.println("Digite 3 para imprimir a lista");
+
+            opcao = sc.nextInt();
+            switch (opcao){
+                case 1:
+                    System.out.println("Digite a chave do Nó sequencial a ser inserido: ");
+                    novaChave = sc.nextInt();
+                    NoListaSimplesEnc novoNo = new NoListaSimplesEnc();
+                    novoNo.chave = novaChave;
+                    inserir(novoNo, lista);
+                    break;
+                case 2:
+                    System.out.println("Digite a chave do Nó sequencial a ser removido: ");
+                    novaChave = sc.nextInt();
+                    NoListaSimplesEnc removido = remover(novaChave, lista);
+                    if(removido != null){
+                        System.out.println("Removido com sucesso");
+                    }
+                    else{
+                        System.out.println("Erro: Elemento " + novaChave + " não encontrado");
+                    }
+                    break;
+                case 3:
+                    imprimir(lista);
+                    break;
+                default:
+                    System.out.println("Comando inválido.");
+                    break;
+            }
+        }while(true);
     }
 }

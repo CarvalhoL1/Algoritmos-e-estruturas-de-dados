@@ -13,17 +13,29 @@ procedimento imprimirListaEnc(L){
             pt = pt.proximo;
         }enquanto pt != L.cabeca;}
 }
-procedimento busca(x, ant, L){
+procedimento busca(x, ant, L){ //Busca retorna o primeiro elemento >= a x, para inserção, x deve ser anterior a ele
     pt  = L.cabeca
     ant = NIL;
     se pt != NIL{
-        faça {
+        se pt.chave >=x{
+            ant = L.cabeca;
+            enquanto ant.proximo != cabeca{
+                ant = ant.proximo;
+            }
+            retorne pt;
+        }
+        senão{
+        ant = pt;
+        pt = pt.proximo;
+        enquanto pt != L.cabeca {
+        
             se(pt.chave >= x){
                 retorne pt;
             }
             ant = pt;
             pt = pt.proximo;
-        } enquanto(pt != L.cabeca)
+            } 
+        }
     }
     senão{
         imprimir("Lista vazia");
@@ -38,18 +50,12 @@ procedimento inserir(x, L){
         L.cabeca = x;
         x.proximo = x;
     }
-    senão se pt != NIL {
-        se pt.chave == x.chave {
-            imprimir("Nó " + x.chave + " já existe");
-        }
+    senão se pt != x e pt != NIL {
+        
         senão se pt == L.cabeca{ //x é o novo menor termo
-            ultimo = L.cabeca;
-            enquanto ultimo.proximo != L.cabeca{
-                ultimo = ultimo.proximo;
-            }
             x.proximo = L.cabeca;
             L.cabeca = x;
-            ultimo.proximo = L.cabeca;
+            ant.proximo = L.cabeca;
         }
         senão{ //insere no meio normalmente, entre ant e pt
             ant.proximo = x;
@@ -57,9 +63,12 @@ procedimento inserir(x, L){
         }
         
     }
-    senão{ //x maior de todos, caso pt seja nulo (não achou elemento menor)
+    senão se pt == NIL { //x maior de todos, caso pt seja nulo (não achou elemento menor)
             ant.proximo = x;
             x.proximo = L.cabeca;
+        }
+    senão {
+            imprimir("Nó " + x.chave + " já existe");
         }
     
 }
@@ -70,12 +79,8 @@ procedimento remover(x, L){
     se pt != NIL e pt.chave == x{
         se pt == L.cabeca{
             se pt.proximo != L.cabeca{
-                ultimo = L.cabeca;
-                enquanto ultimo.proximo != L.cabeca {
-                    ultimo = ultimo.proximo;
-                }
                 L.cabeca = pt.proximo;
-                ultimo.proximo = L.cabeca;
+                ant.proximo = L.cabeca;
                 } //O elemento a ser removido é a cabeça, então passa o status de cabeça pro proximo
             senão{
                 L.cabeca = NIL; //só tem um elemento
