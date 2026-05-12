@@ -13,7 +13,7 @@ procedimento imprimirListaEnc(L){
             pt = pt.proximo;
         }enquanto pt != L.cabeca;}
 }
-procedimento busca(x, ant, L){ //Busca retorna o primeiro elemento >= a x, para inserção, x deve ser anterior a ele
+procedimento buscaInserção(x, ant, L){ //Busca retorna o primeiro elemento >= a x, para inserção, x deve ser anterior a ele
     pt  = L.cabeca
     ant = NIL;
     se pt != NIL{
@@ -25,16 +25,16 @@ procedimento busca(x, ant, L){ //Busca retorna o primeiro elemento >= a x, para 
             retorne pt;
         }
         senão{
-        ant = pt;
-        pt = pt.proximo;
-        enquanto pt != L.cabeca {
-        
-            se(pt.chave >= x){
-                retorne pt;
-            }
             ant = pt;
             pt = pt.proximo;
-            } 
+            enquanto pt != L.cabeca {
+            
+                se(pt.chave >= x){
+                    retorne pt;
+                }
+                ant = pt;
+                pt = pt.proximo;
+                } 
         }
     }
     senão{
@@ -45,7 +45,7 @@ procedimento busca(x, ant, L){ //Busca retorna o primeiro elemento >= a x, para 
 
 procedimento inserir(x, L){
     ant = NIL;
-    pt = busca(x.chave, ant, L);
+    pt = buscaInserção(x.chave, ant, L);
     se L.cabeca == NIL{ //Lista vazia
         L.cabeca = x;
         x.proximo = x;
@@ -72,11 +72,35 @@ procedimento inserir(x, L){
         }
     
 }
-
+procedimento busca(x, ant, L){
+    ant = nil;
+    pt = L.cabeca;
+    se pt != nil{
+        se x.chave != L.cabeca.chave{
+            ant = pt;
+            pt = pt.proximo;
+            enquanto pt != L.cabeca{
+                se pt == x {
+                    retorne pt;
+                }
+                ant = pt;
+                pt = pt.proximo;
+            }
+        }
+        senão{
+            ant = L.cabeca;
+            enquanto ant.proximo != L.cabeca{
+                ant = ant.proximo;
+            } 
+            retorne pt;
+        }    
+    }
+    retorne NIL;
+}
 procedimento remover(x, L){
     ant = NIL;
     pt = busca(x, ant, L);
-    se pt != NIL e pt.chave == x{
+    se pt != NIL{
         se pt == L.cabeca{
             se pt.proximo != L.cabeca{
                 L.cabeca = pt.proximo;
