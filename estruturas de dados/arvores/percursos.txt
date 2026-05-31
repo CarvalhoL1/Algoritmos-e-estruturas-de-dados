@@ -1,0 +1,114 @@
+A ideia é percursos iterativos em pos/em/pos ordem, sem estruturas de dados auxiliares e nem recursão
+
+estruturas basicas para os procedimentos:
+
+Registro No{
+    inteiro chave;
+    No pai;
+    No esq;
+    No dir;
+}
+Registro Arvore{
+    No raiz;
+}
+
+procedimento percursoPreOrdem (Arvore arv){
+    ant = NIL;
+    atual = arv.raiz;
+    enquanto atual != NIL{
+        se ant == atual.pai{
+            imprimir(atual + " ");
+            se atual.esq != NIL{
+                prox = atual.esq;
+            }
+            senão se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                prox = atual.pai;
+            }
+        }
+        senão se ant == atual.esq{
+            se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                prox = atual.pai;
+            }
+        }
+        senão{
+            prox = atual.pai;
+        }
+        ant = atual;
+        atual = prox;
+    }
+}
+
+procedimento percursoEmOrdem (Arvore arv){
+    ant = NIL;
+    atual = arv.raiz;
+    enquanto atual != NIL{
+        se ant == atual.pai{
+            se atual.esq != NIL{
+                prox = atual.esq;
+            }
+            senão {
+                imprimir(atual + " ");
+                se atual.dir != NIL{
+                    prox = atual.dir;
+                }
+                senão{
+                    prox = atual.pai;
+                }
+            }
+        }
+        senão se ant == atual.esq{
+            imprimir(atual + " ");
+            se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                prox = atual.pai;
+            }
+        }
+        senão{
+            prox = atual.pai;
+        }
+        ant = atual;
+        atual = prox;
+    }
+}
+
+procedimento percursoPosOrdem (Arvore arv){
+    ant = NIL;
+    atual = arv.raiz;
+    enquanto atual != NIL{
+        se ant == atual.pai{
+            se atual.esq != NIL{
+                prox = atual.esq;
+            }
+            senão se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                imprimir(atual + " ");
+                prox = atual.pai;
+            }
+        }
+        senão se ant == atual.esq{
+            se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                imprimir(atual + " ");
+                prox = atual.pai;
+            }
+        }
+        senão{
+            imprimir(atual + " ");
+            prox = atual.pai;
+        }
+        ant = atual;
+        atual = prox;
+    }
+}
