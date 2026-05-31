@@ -1,4 +1,4 @@
-A ideia é percursos iterativos em pos/em/pos ordem, sem estruturas de dados auxiliares e nem recursão
+A ideia é percursos iterativos em pos/em/pos ordem (para arvores binarias de busca), sem estruturas de dados auxiliares e nem recursão
 
 estruturas basicas para os procedimentos:
 
@@ -17,7 +17,7 @@ procedimento percursoPreOrdem (Arvore arv){
     atual = arv.raiz;
     enquanto atual != NIL{
         se ant == atual.pai{
-            imprimir(atual + " ");
+            imprimir(atual.chave + " ");
             se atual.esq != NIL{
                 prox = atual.esq;
             }
@@ -53,7 +53,7 @@ procedimento percursoEmOrdem (Arvore arv){
                 prox = atual.esq;
             }
             senão {
-                imprimir(atual + " ");
+                imprimir(atual.chave + " ");
                 se atual.dir != NIL{
                     prox = atual.dir;
                 }
@@ -63,7 +63,7 @@ procedimento percursoEmOrdem (Arvore arv){
             }
         }
         senão se ant == atual.esq{
-            imprimir(atual + " ");
+            imprimir(atual.chave + " ");
             se atual.dir != NIL{
                 prox = atual.dir;
             }
@@ -91,7 +91,7 @@ procedimento percursoPosOrdem (Arvore arv){
                 prox = atual.dir;
             }
             senão{
-                imprimir(atual + " ");
+                imprimir(atual.chave + " ");
                 prox = atual.pai;
             }
         }
@@ -100,12 +100,12 @@ procedimento percursoPosOrdem (Arvore arv){
                 prox = atual.dir;
             }
             senão{
-                imprimir(atual + " ");
+                imprimir(atual.chave + " ");
                 prox = atual.pai;
             }
         }
         senão{
-            imprimir(atual + " ");
+            imprimir(atual.chave + " ");
             prox = atual.pai;
         }
         ant = atual;
