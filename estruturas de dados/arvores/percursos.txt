@@ -112,3 +112,56 @@ procedimento percursoPosOrdem (Arvore arv){
         atual = prox;
     }
 }
+
+
+procedimento de percurso Em Ordem que recebe uma arvore binaria e retorna uma lista encadeada decrescente
+Registro NoListaEnc{
+    inteiro chave;
+    NoListaEnc proximo;
+}
+procedimento emOrdemParaLista(Arvore arv){
+    cabeca = NIL;
+    ultimo = NIL;
+    ant = NIL;
+    atual = arv.raiz;
+    prox = NIL;
+    enquanto atual != NIL{
+        se ant == atual.pai{
+            se atual.dir != NIL{
+                prox = atual.dir;
+            }
+            senão{
+                novo = NoListaEnc();
+                novo.chave = atual.chave;
+                novo.proximo = NIL;
+                se ultimo == NIL{ cabeca = novo; }
+                senão{ ultimo.proximo = novo; }
+                ultimo = novo;
+
+                se atual.esq != NIL{ 
+                    prox = atual.esq; }
+                senão{ 
+                    prox = atual.pai; }
+            }
+        }
+        senão se ant == atual.dir{
+            novo = NoListaEnc();
+            novo.chave = atual.chave;
+            novo.proximo = NIL;
+            se ultimo == NIL{ 
+                cabeca = novo; }
+            senão{ 
+                ultimo.proximo = novo; }
+            ultimo = novo;
+
+            se atual.esq != NIL{ prox = atual.esq; }
+            senão{ prox = atual.pai; }
+        }
+        senão{
+            prox = atual.pai;
+        }
+        ant = atual;
+        atual = prox;
+    }
+    retorne cabeca;
+}
