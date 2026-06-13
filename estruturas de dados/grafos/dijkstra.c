@@ -100,7 +100,19 @@ void Dijkstra(Grafo *g, int numVertices, int verticeOrigem){
     }
     printf("Resultados do Dijkstra (Origem: %d):\n", verticeOrigem);
     for (int i = 0; i < numVertices; i++) {
-        printf("Ate o vertice %d -> Menor Distancia: %d, Pai: %d\n", i, d[i], pai[i]);
+        printf("Ate o vertice %d -> Menor Distancia: ", i);
+        if(d[i] != INT_MAX){
+            printf("%d, Pai: ", d[i]);
+        }
+        else{
+            printf("INFINITO, Pai: ");
+        }
+        if(pai[i] != -1){
+            printf("%d\n", pai[i]);
+        }
+        else{
+            printf("nulo\n");
+        }
     }
 }
 int main() {
@@ -115,6 +127,9 @@ int main() {
     adicionarAresta(&g, 1, 2, 3); // Aresta de 1 para 2 com peso 3
     adicionarAresta(&g, 2, 3, 2); // Aresta de 2 para 3 com peso 2
     adicionarAresta(&g, 3, 4, 6); // Aresta de 3 para 4 com peso 6
+    adicionarAresta(&g, 1, 0, 4); // Aresta de 1 para 0 com peso 4
+    adicionarAresta(&g, 1, 3, 7); // Aresta de 1 para 3 com peso 7
+    adicionarAresta(&g, 4, 3, 2); // Aresta de 4 para 3 com peso 7
     Dijkstra(&g, numVertices, 0);
     
     return 0;
